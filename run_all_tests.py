@@ -1,13 +1,18 @@
 import unittest
 import platform
+import sys
 
 execute_mpi_tests = (platform.system() == 'Linux') # MPI-tests can only be executed on linux
 print("Executing the MPI-tests:", execute_mpi_tests)
 
-from file_comm.tests import test_file_comm
-from sockets_comm.tests import test_sockets_comm
+
+sys.path.append("file_comm/tests")
+sys.path.append("sockets_comm/tests")
+sys.path.append("mpi_comm/tests")
+import test_file_comm
+import test_sockets_comm
 if execute_mpi_tests:
-    from mpi_comm.tests import test_mpi_comm
+    import test_mpi_comm
 
 suite = unittest.TestSuite()
 loader = unittest.TestLoader()
