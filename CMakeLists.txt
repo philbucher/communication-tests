@@ -17,3 +17,5 @@ if(UNIX AND NOT APPLE)
 endif()
 
 pybind11_add_module(communication_tests ${COMM_TESTS_PY_SOURCES})
+
+install(TARGETS communication_tests DESTINATION ${CMAKE_SOURCE_DIR}/libs )
