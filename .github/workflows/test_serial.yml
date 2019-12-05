@@ -20,5 +20,6 @@ jobs:
         echo Add other actions to build,
         echo test, and deploy your project.
     - name: Run py-script
-      run: cd tests
-      run: python run_all_tests.py
+      run: |
+        cd tests
+        python run_all_tests.py
