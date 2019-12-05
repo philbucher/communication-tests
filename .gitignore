@@ -1,0 +1,8 @@
+# Recovery files
+*~
+
+# Compiled python
+*.pyc
+
+# VS Code settings
+.vscode*
