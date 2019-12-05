@@ -24,5 +24,5 @@ jobs:
         make install
     - name: Run py-script
       run: |
-        cd tests
+        cd ../tests
         python run_all_tests.py
