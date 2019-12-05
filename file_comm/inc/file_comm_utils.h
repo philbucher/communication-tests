@@ -2,6 +2,7 @@
 
 #include <string>
 
+namespace FileCommUtils {
 
 void CreateDirectory()
 {
@@ -34,3 +35,5 @@ bool Rename()
 {
 
 }
+
+} // namespace FileCommUtils
