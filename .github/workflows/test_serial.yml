@@ -1,11 +1,15 @@
-name: CI
+name: Execute Serial Tests
 
 on: [push]
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        python-version: [3.6]
 
     steps:
     - uses: actions/checkout@v1
