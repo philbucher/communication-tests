@@ -1,19 +1,7 @@
 import unittest
-import platform
-import sys
+import os
 
-execute_mpi_tests = (platform.system() == 'Linux') # MPI-tests can only be executed on linux
-print("Executing the MPI-tests:", execute_mpi_tests)
-
-import test_file_comm
-import test_sockets_comm
-import test_mpi_comm
-
-suite = unittest.TestSuite()
 loader = unittest.TestLoader()
-suite.addTests(loader.loadTestsFromModule(test_file_comm))
-suite.addTests(loader.loadTestsFromModule(test_sockets_comm))
-if execute_mpi_tests:
-    suite.addTests(loader.loadTestsFromModule(test_mpi_comm))
-
-unittest.TextTestRunner().run(suite)
+tests = loader.discover(os.path.dirname(__file__)) # automatically discover all tests in this directory
+testRunner = unittest.runner.TextTestRunner(verbosity=1)
+testRunner.run(tests)
