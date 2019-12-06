@@ -48,17 +48,13 @@ jobs:
       run: echo Hello, world!
     - name: Compiling
       run: |
-        mkdir build
-        cd build
-        cmake ..
-        cmake --build build
-        #make install
+        cmake --install build
     - name: LS
       run: |
         ls
         cd build
         ls
-        cd ../tests
+        cd ../libs
         ls
     - name: Run py-script
       run: |
