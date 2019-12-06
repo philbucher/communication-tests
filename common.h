@@ -4,10 +4,9 @@
   #error This library needs at least a C++11 compliant compiler
 #endif
 
-#define FILESYSTEM_AVAILABLE 0
 #if __cplusplus <= c++ 17
     #if filesystem available (=> __has_include("filesystem"))
-        #define FILESYSTEM_AVAILABLE 1
+        #define FILESYSTEM_AVAILABLE
     #endif
 #endif
 
