@@ -26,7 +26,8 @@ jobs:
         ls
         cd ../tests
         ls
-        # cp libs/communication_tests.*  tests/.
+        cd ..
+        cp libs/communication_tests.*  tests/.
     - name: Run py-script
       run: |
         cd tests
