@@ -51,7 +51,7 @@ jobs:
         mkdir build
         cd build
         cmake ..
-        cmake --build
+        cmake --build build
         #make install
     - name: LS
       run: |
