@@ -23,7 +23,7 @@ jobs:
       run: |
         sudo apt-get install libopenmpi-dev
         sudo apt-get install openmpi-bin
-        cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON
+        cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON -DBUILD_MPI_COMM=ON
         cmake --build "build" --target install
 
     - name: Run tests
