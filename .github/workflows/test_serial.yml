@@ -18,7 +18,7 @@ jobs:
     - name: Compiling
       run: |
         cmake -H"." -B"build"
-        cmake --build"build" --target install
+        cmake --build "build" --target install
     - name: LS
       run: |
         ls
@@ -46,7 +46,7 @@ jobs:
     - name: Compiling
       run: |
         cmake -H"." -B"build"
-        cmake --build"build" --target install
+        cmake --build "build" --target install
     - name: LS
       run: |
         ls
