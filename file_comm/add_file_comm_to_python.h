@@ -1,10 +1,8 @@
 #include <pybind11/pybind11.h>
 
-#include "../inc/file_comm_utils.h"
+#include "file_comm_utils.h"
 
-namespace py = pybind11;
-
-PYBIND11_MODULE(communication_tests, m)
+void AddFileCommToPython(pybind11::module& m)
 {
     auto m_file_comm_utils = m.def_submodule("FileCommUtils");
 
