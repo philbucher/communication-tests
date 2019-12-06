@@ -8,7 +8,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
+        os: [ubuntu-latest]
         python-version: [3.7]
 
     steps:
@@ -21,6 +21,8 @@ jobs:
 
     - name: Building
       run: |
+        sudo apt-get install libopenmpi-dev
+        sudo apt-get install openmpi-bin
         cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON
         cmake --build "build" --target install
 
