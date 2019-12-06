@@ -22,6 +22,8 @@ jobs:
         cmake ..
         make
         make install
+    - name: LS
+      run: ls
     - name: Run py-script
       run: |
         cd tests
