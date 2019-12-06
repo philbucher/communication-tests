@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+// #include <filesystem>
 
 namespace FileCommUtils {
 
@@ -29,11 +30,12 @@ void RemoveAll()
 bool FileExists()
 {
     // I am already now using this, here I want to check what happens if the file is in a subfolder...
+    return false;
 }
 
 bool Rename()
 {
-
+    return false;
 }
 
 } // namespace FileCommUtils
