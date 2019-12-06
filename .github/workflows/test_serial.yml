@@ -22,11 +22,11 @@ jobs:
     - name: LS
       run: |
         ls
-        cd libs
-        ls
+        # cd libs
+        # ls
         cd ../tests
         ls
-        cd ..
+        # cd ..
         # cp libs/communication_tests.*  tests/.
     - name: Run py-script
       run: |
