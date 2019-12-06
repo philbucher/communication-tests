@@ -17,11 +17,8 @@ jobs:
       run: echo Hello, world!
     - name: Compiling
       run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
-        make install
+        cmake -H"." -B"build"
+        cmake --build"build" --target install
     - name: LS
       run: |
         ls
@@ -48,7 +45,8 @@ jobs:
       run: echo Hello, world!
     - name: Compiling
       run: |
-        cmake --install build
+        cmake -H"." -B"build"
+        cmake --build"build" --target install
     - name: LS
       run: |
         ls
