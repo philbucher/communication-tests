@@ -51,12 +51,12 @@ jobs:
         mkdir build
         cd build
         cmake ..
-        make
-        make install
+        #make
+        #make install
     - name: LS
       run: |
         ls
-        cd libs
+        cd build
         ls
         cd ../tests
         ls
