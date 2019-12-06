@@ -23,7 +23,12 @@ jobs:
         make
         make install
     - name: LS
-      run: ls
+      run: |
+        ls
+        cd libs
+        ls
+        cd ../tests
+        ls
     - name: Run py-script
       run: |
         cd tests
