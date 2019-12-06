@@ -2,8 +2,9 @@ import unittest
 import sys, os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "../libs"))
+sys.path.append("/home/runner/work/communication-tests/communication-tests/libs")
 
-# import communication_tests
+import communication_tests
 
 class TestFileCommUtilities(unittest.TestCase):
 
