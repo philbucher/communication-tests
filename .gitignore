@@ -9,3 +9,5 @@
 
 *build
 *libs
+
+tests/communication_tests*
