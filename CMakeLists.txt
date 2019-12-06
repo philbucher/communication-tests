@@ -18,4 +18,4 @@ endif()
 
 pybind11_add_module(communication_tests ${COMM_TESTS_PY_SOURCES})
 
-install(TARGETS communication_tests DESTINATION ${CMAKE_SOURCE_DIR}/tests )
+install(TARGETS communication_tests DESTINATION ${CMAKE_SOURCE_DIR}/tests)  # installing directly into the tests-dir where it is used, no need to bother with a separate "libs" dir

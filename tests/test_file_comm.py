@@ -1,8 +1,6 @@
 import unittest
 import sys, os
 
-# sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), "../libs"))
-print("current WDIR", os.getcwd())
 import communication_tests
 
 class TestFileCommUtilities(unittest.TestCase):
