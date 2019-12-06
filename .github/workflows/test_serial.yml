@@ -24,7 +24,7 @@ jobs:
         ls
         # cd libs
         # ls
-        cd ../tests
+        cd tests
         ls
         # cd ..
         # cp libs/communication_tests.*  tests/.
