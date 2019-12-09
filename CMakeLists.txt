@@ -7,6 +7,9 @@ add_subdirectory(external_libraries/pybind)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 if(${MSVC})
+    # required such that "__cplusplus" is set to the correct value
+    # see https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/
+    # Note: min value is c++14 => 201402L (c++11 does not exist, will also output 201402L)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus")
 endif()
 
