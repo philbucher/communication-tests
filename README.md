@@ -10,3 +10,15 @@ Currently the following methods are tested / planned:
 - Interprocess (using Boost Interprocess)
 - MPI
 - MPI with RMA (remote memory access)
+
+## Reference
+
+If you use this repository, please refer to the official GitHub repository:
+
+```
+@misc{communication-tests,
+  author = "Philipp Bucher",
+  title = "ANurbs",
+  howpublished = "\url{https://github.com/philbucher/communication-tests}",
+}
+```
