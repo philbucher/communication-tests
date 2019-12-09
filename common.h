@@ -1,8 +1,8 @@
 #pragma once
 
-#if __cplusplus >= 201703L && (__has_include(<filesystem>) || __has_include(<experimental/filesystem>))
-    #define FILESYSTEM_AVAILABLE
-#endif
+// #if __cplusplus >= 201703L && (__has_include(<filesystem>) || __has_include(<experimental/filesystem>))
+//     #define FILESYSTEM_AVAILABLE
+// #endif
 
 // #if defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
 //     #define KRATOS_COMPILED_IN_LINUX
