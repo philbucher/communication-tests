@@ -20,7 +20,6 @@ void create_directory(const std::string& rDirectoryName)
     fs::create_directory(rDirectoryName);
 }
 
-
 void remove(const std::string& rName)
 {
     fs::remove(rName);
@@ -31,20 +30,14 @@ void remove_all(const std::string& rName)
     fs::remove_all(rName);
 }
 
-// void IsDirectory()
-// {
-
-// }
-
-bool FileExists()
+bool exists(const std::string& rName)
 {
-    // I am already now using this, here I want to check what happens if the file is in a subfolder...
-    return false;
+    return fs::exists(rName);
 }
 
-bool rename()
+void rename(const std::string& rOldName, const std::string& rNewName)
 {
-    return false;
+    fs::rename(rOldName, rNewName);
 }
 
 } // namespace FileCommUtils
