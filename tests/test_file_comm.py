@@ -49,7 +49,7 @@ class TestFileCommUtilities(unittest.TestCase):
 
         self.assertTrue(os.path.isdir(dir_name))
         self.assertTrue(os.path.isfile(file_name))
-        with self.assertRaisesRegex(RuntimeError, "Directory not empty"):
+        with self.assertRaisesRegex(RuntimeError, "Directory not emptyddddd"):
             communication_tests.FileCommUtils.remove(dir_name)
 
         communication_tests.FileCommUtils.remove_all(dir_name)
