@@ -1,7 +1,12 @@
 project(communication_tests)
 cmake_minimum_required (VERSION 2.8.6)
 
+
+# set(PYBIND11_CPP_STANDARD -std=c++17) not used, kept here as a reminder that pybind might override things!
 add_subdirectory(external_libraries/pybind)
+
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 if(BUILD_SOCKETS_COMM)
     message("Compiling Sockets-Communication")
@@ -24,11 +29,23 @@ if(BUILD_MPI_COMM)
 
     find_package(MPI)
 
+    message("MPI version found: " ${MPI_VERSION}) # TODO fix this
+
     include_directories(SYSTEM ${MPI_INCLUDE_PATH})
     set(EXTRA_LIBS_TO_LINK ${MPI_LIBRARIES})
 
 endif()
 
 pybind11_add_module(communication_tests py_module.cpp ${EXTRA_LIBS_TO_LINK})
+
+# Set c++ standard
+if(DEFINED ENV{COMM_TESTS_CXX_STANDARD})
+    set(COMM_TESTS_CXX_STANDARD $ENV{COMM_TESTS_CXX_STANDARD})
+else()
+    set(COMM_TESTS_CXX_STANDARD 11) # default to c++11
+endif()
+
+message("Using CXX_STANDARD: " ${COMM_TESTS_CXX_STANDARD})
+set_property(TARGET communication_tests PROPERTY CXX_STANDARD ${COMM_TESTS_CXX_STANDARD})
 
 install(TARGETS communication_tests DESTINATION ${CMAKE_SOURCE_DIR}/tests)  # installing directly into the tests-dir where it is used, no need to bother with a separate "libs" dir

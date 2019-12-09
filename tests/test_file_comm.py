@@ -6,7 +6,7 @@ import communication_tests
 class TestFileCommUtilities(unittest.TestCase):
 
     def test_CreateDirectory(self):
-        pass
+        communication_tests.FileCommUtils.CreateDirectory("TestDir")
 
     def test_Remove(self):
         pass
