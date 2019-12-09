@@ -10,6 +10,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
         python-version: [3.7]
+        cxx-standard: [11, 17]
 
     steps:
     - uses: actions/checkout@v1
@@ -23,6 +24,8 @@ jobs:
       run: |
         cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON
         cmake --build "build" --target install
+      env:
+        COMM_TESTS_CXX_STANDARD: ${{ matrix.cxx-standard }}
 
     - name: Run tests
       run: |
