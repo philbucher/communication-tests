@@ -1,12 +1,14 @@
 project(communication_tests)
 cmake_minimum_required (VERSION 2.8.6)
 
-
 # set(PYBIND11_CPP_STANDARD -std=c++17) not used, kept here as a reminder that pybind might override things!
 add_subdirectory(external_libraries/pybind)
 
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+
+if(${MSVC})
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus")
+endif()
 
 if(BUILD_SOCKETS_COMM)
     message("Compiling Sockets-Communication")
