@@ -19,17 +19,7 @@ namespace FileCommUtils {
 
 void create_directory(const std::string& rDirectoryName)
 {
-
-std::cout << "__cplusplus : " << __cplusplus << std::endl;
-
-#ifdef FILESYSTEM_AVAILABLE
-std::cout << "FILESYSTEM_AVAILABLE!!!" << std::endl;
-#else
-std::cout << "FILESYSTEM NOT AVAILABLE, using GHC::FILESYSTEM!!!" << std::endl;
-#endif
-
-fs::create_directory(rDirectoryName);
-
+    fs::create_directory(rDirectoryName);
 }
 
 
@@ -37,7 +27,6 @@ void remove(const std::string& rName)
 {
     fs::remove(rName);
 }
-
 
 void remove_all(const std::string& rName)
 {
