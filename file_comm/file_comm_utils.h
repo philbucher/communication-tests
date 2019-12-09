@@ -8,11 +8,9 @@
     #include <filesystem>
     namespace fs = std::filesystem;
     #define FILESYSTEM_AVAILABLE
-    #pragma message("Filesystem available")
 #else
     #include "../external_libraries/ghc/filesystem.hpp"
     namespace fs = ghc::filesystem;
-    #pragma message("Filesystem not available")
 #endif
 
 namespace FileCommUtils {

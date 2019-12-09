@@ -27,4 +27,16 @@ PYBIND11_MODULE(communication_tests, m)
 
     m.attr("Sockets_enabled") = sockets_enabled;
     m.attr("MPI_enabled") = mpi_enabled;
+
+    m.def("CompilerInfo", [](){
+        std::cout << "Compilation information: " << std::endl;
+        std::cout << "    Output of \"__cplusplus\": " << __cplusplus << std::endl;
+        std::cout << "    Filesystem available: ";
+        #ifdef FILESYSTEM_AVAILABLE
+        std::cout << "YES";
+        #else
+        std::cout << "NO";
+        #endif
+        std::cout << std::endl;
+    });
 }
