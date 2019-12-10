@@ -13,10 +13,7 @@ if(${MSVC})
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus")
 endif()
 
-if(BUILD_SOCKETS_COMM)
-    message("Compiling Sockets-Communication")
-    add_definitions(-DCOMM_TESTS_USE_SOCKETS)
-
+if(BUILD_SOCKETS_COMM OR BUILD_INTERPROCESS_COMM)
     # the following line is required for older versions of boost, see:
     # https://stackoverflow.com/questions/9723793/undefined-reference-to-boostsystemsystem-category-when-compiling
     add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
@@ -25,11 +22,20 @@ if(BUILD_SOCKETS_COMM)
     include_directories(${BOOST_ROOT})
 endif()
 
+if(BUILD_SOCKETS_COMM)
+    message("Building Sockets-Communication")
+    add_definitions(-DCOMM_TESTS_USE_SOCKETS)
+endif()
 
-set(EXTRA_LIBS_TO_LINK "")
+if(BUILD_INTERPROCESS_COMM)
+    message("Building Interprocess-Communication")
+    add_definitions(-DCOMM_TESTS_USE_INTERPROCESS)
+endif()
+
+set(EXTRA_LIBS_TO_LINK "") # required for the MPI-Libs
 
 if(BUILD_MPI_COMM)
-    message("Compiling MPI-Communication")
+    message("Building MPI-Communication")
     add_definitions(-DCOMM_TESTS_USE_MPI)
 
     find_package(MPI)
