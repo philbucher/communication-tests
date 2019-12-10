@@ -2,6 +2,7 @@ import unittest
 
 class WrapperClass(object):
     # wrapping in an extra class to avoid discovery of the base-test
+    # see https://stackoverflow.com/a/25695512
     class BaseCommunicationTest(unittest.TestCase):
 
         @classmethod
