@@ -1,6 +1,5 @@
 #pragma once
 
-#include <string>
 #include <vector>
 #include "../communication.h"
 #include "file_comm_file_system.h"
@@ -20,22 +19,22 @@ class FileCommunication : public Communication
 
     }
 
-    void Connect() override
+    void ConnectDetail() override
     {
 
     }
 
-    void Disconnect() override
+    void DisconnectDetail() override
     {
 
     }
 
-    void Send(const std::size_t SendSize, const std::size_t SendDataId) override
+    void SendDetail(const std::size_t SendSize, const std::size_t SendDataId) override
     {
 
     }
 
-    void Receive(const std::size_t SendSize, const std::size_t SendDataId) override
+    void ReceiveDetail(const std::size_t SendSize, const std::size_t SendDataId) override
     {
 
     }

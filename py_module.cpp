@@ -22,12 +22,7 @@ void ExposeCommunication(pybind11::module& m, const std::string& rName)
 {
     namespace py = pybind11;
     py::class_<TCommunication>(m, rName.c_str())
-        .def(py::init<const std::string&, const bool>())
-        .def("Connect",    &TCommunication::Connect)
-        .def("Disconnect", &TCommunication::Disconnect)
-        .def("Send",       &TCommunication::Send)
-        .def("Receive",    &TCommunication::Receive)
-        ;
+        .def(py::init<const std::string&, const bool>());
 }
 
 PYBIND11_MODULE(communication_tests, m)
@@ -35,6 +30,14 @@ PYBIND11_MODULE(communication_tests, m)
     bool sockets_enabled = false;
     bool interprocess_enabled = false;
     bool mpi_enabled = false;
+
+    namespace py = pybind11;
+    py::class_<Communication>(m, "Communication")
+        .def("Connect",    &Communication::Connect)
+        .def("Disconnect", &Communication::Disconnect)
+        .def("Send",       &Communication::Send)
+        .def("Receive",    &Communication::Receive)
+        ;
 
     AddFilesystemToPython(m);
 

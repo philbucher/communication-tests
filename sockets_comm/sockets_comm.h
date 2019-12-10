@@ -1,40 +1,42 @@
 #pragma once
 
-#include <string>
 #include <vector>
+#include "../communication.h"
 #include <boost/asio.hpp>
 
-class SocketsCommunication
+class SocketsCommunication : public Communication
 {
     public:
 
     SocketsCommunication(const std::string& rConnectionName, const bool IsConnectionMaster)
+        : Communication(rConnectionName, IsConnectionMaster)
     {
 
     }
 
-    ~SocketsCommunication()
+    ~SocketsCommunication() override
     {
 
     }
 
-    void Connect()
+    void ConnectDetail() override
     {
 
     }
 
-    void Disconnect()
+    void DisconnectDetail() override
     {
 
     }
 
-    void Send(const std::size_t SendSize, const std::size_t SendDataId)
+    void SendDetail(const std::size_t SendSize, const std::size_t SendDataId) override
     {
 
     }
 
-    void Receive(const std::size_t SendSize, const std::size_t SendDataId)
+    void ReceiveDetail(const std::size_t SendSize, const std::size_t SendDataId) override
     {
 
     }
 };
+

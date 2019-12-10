@@ -10,10 +10,26 @@ public:
 
     virtual ~Communication() { }
 
-    virtual void Connect() = 0;
-    virtual void Disconnect() = 0;
-    virtual void Send(const std::size_t SendSize, const std::size_t SendDataId) = 0;
-    virtual void Receive(const std::size_t SendSize, const std::size_t SendDataId) = 0;
+    void Connect()
+    {
+
+    }
+
+    void Disconnect()
+    {
+
+    }
+
+    void Send(const std::size_t SendSize, const std::size_t SendDataId)
+    {
+
+    }
+
+    void Receive(const std::size_t SendSize, const std::size_t SendDataId)
+    {
+
+    }
+
 
 protected:
     std::string GetConnectionName() const {return mConnectionName;}
@@ -28,4 +44,9 @@ private:
     bool mIsConnectionMaster = false;
     bool mPrintTiming = false;
     bool mIsConnected = false;
+
+    virtual void ConnectDetail() = 0;
+    virtual void DisconnectDetail() = 0;
+    virtual void SendDetail(const std::size_t SendSize, const std::size_t SendDataId) = 0;
+    virtual void ReceiveDetail(const std::size_t SendSize, const std::size_t SendDataId) = 0;
 };
