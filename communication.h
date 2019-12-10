@@ -13,12 +13,14 @@ public:
 
     void Connect()
     {
-
+        // TODO add timings (or other things) if required
+        ConnectDetail();
     }
 
     void Disconnect()
     {
-
+        // TODO add timings (or other things) if required
+        DisconnectDetail();
     }
 
     void Send(const std::size_t SendSize, const std::size_t SendDataId)
@@ -33,17 +35,13 @@ public:
 
 protected:
     std::string GetConnectionName() const {return mConnectionName;}
-    int GetEchoLevel() const              {return mEchoLevel;}
     bool GetIsConnectionMaster() const    {return mIsConnectionMaster;}
     bool GetPrintTiming() const           {return mPrintTiming;}
-    bool GetIsConnected() const           {return mIsConnected;}
 
 private:
     std::string mConnectionName;
-    int mEchoLevel = 1;
     bool mIsConnectionMaster = false;
     bool mPrintTiming = false;
-    bool mIsConnected = false;
 
     virtual void ConnectDetail() = 0;
     virtual void DisconnectDetail() = 0;
