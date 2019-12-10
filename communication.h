@@ -45,6 +45,8 @@ private:
 
     virtual void ConnectDetail() = 0;
     virtual void DisconnectDetail() = 0;
-    virtual void SendDetail(const std::size_t SendSize, const std::size_t SendDataId) = 0;
-    virtual void ReceiveDetail(const std::size_t SendSize, const std::size_t SendDataId) = 0;
+    virtual void SendDetail(const std::vector<int>& rSendData) = 0;
+    virtual void SendDetail(const std::vector<double>& rSendData) = 0;
+    virtual void ReceiveDetail(std::vector<int>& rRecvData) = 0;
+    virtual void ReceiveDetail(std::vector<double>& rRecvData) = 0;
 };
