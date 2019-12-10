@@ -75,4 +75,4 @@ jobs:
       run: ls /usr/include/x86_64-linux-gnu
 
     - name: searching...
-      run: ls /opt
+      run: ls /opt/runner
