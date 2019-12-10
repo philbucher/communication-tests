@@ -29,22 +29,22 @@ class MPICommunication : public Communication
 
     }
 
-    void SendDetail(const std::vector<int>& rSendData) override
+    void SendDetail(const std::vector<int>& rData) override
     {
 
     }
 
-    void SendDetail(const std::vector<double>& rSendData) override
+    void SendDetail(const std::vector<double>& rData) override
     {
 
     }
 
-    void ReceiveDetail(std::vector<int>& rRecvData) override
+    void ReceiveDetail(std::vector<int>& rData) override
     {
 
     }
 
-    void ReceiveDetail(std::vector<double>& rRecvData) override
+    void ReceiveDetail(std::vector<double>& rData) override
     {
 
     }

@@ -33,25 +33,10 @@ public:
         RemoveLeftovers();
     }
 
-    void SendDetail(const std::vector<int>& rSendData) override
-    {
-
-    }
-
-    void SendDetail(const std::vector<double>& rSendData) override
-    {
-
-    }
-
-    void ReceiveDetail(std::vector<int>& rRecvData) override
-    {
-
-    }
-
-    void ReceiveDetail(std::vector<double>& rRecvData) override
-    {
-
-    }
+    void SendDetail(const std::vector<int>& rData) override { SendVector(rData); }
+    void SendDetail(const std::vector<double>& rData) override { SendVector(rData); }
+    void ReceiveDetail(std::vector<int>& rData) override { RecvVector(rData); }
+    void ReceiveDetail(std::vector<double>& rData) override { RecvVector(rData); }
 
 private:
     std::string mCommFolderName;
@@ -64,6 +49,18 @@ private:
             // clean up leftovers
             fs::remove_all(mCommFolderName);
         }
+    }
+
+    template<typename TDataType>
+    void SendVector(const std::vector<TDataType>& rData)
+    {
+        // TODO implement ...
+    }
+
+    template<typename TDataType>
+    void RecvVector(std::vector<TDataType>& rData)
+    {
+        // TODO implement ...
     }
 
 };
