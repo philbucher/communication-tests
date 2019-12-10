@@ -6,6 +6,7 @@ import communication_tests
 class TestSocketsCommunication(WrapperClass.BaseCommunicationTest):
     @classmethod
     def CreateCommunication(cls, connection_name, is_connection_master):
+        cls.skipTest("not implemented yet", "not implemented yet")
         return communication_tests.SocketsCommunication(connection_name, is_connection_master)
 
 
