@@ -10,4 +10,3 @@ class WrapperClass(object):
 
         def test_connect_disconnect(self):
             comm_1 = self.CreateCommunication("abc", True)
-            self.assertTrue(True)

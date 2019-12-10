@@ -1,12 +1,12 @@
 import unittest
-import sys, os
-
+from base_communication_test import WrapperClass
 import communication_tests
 
 @unittest.skipUnless(communication_tests.Interprocess_enabled, "Interprocess is not enabled!")
-class TestInterprocessCommunication(unittest.TestCase):
-    def test_dummy(self):
-        pass
+class TestInterprocessCommunication(WrapperClass.BaseCommunicationTest):
+    @classmethod
+    def CreateCommunication(cls, connection_name, is_connection_master):
+        return communication_tests.InterprocessCommunication(connection_name, is_connection_master)
 
 
 if __name__ == '__main__':

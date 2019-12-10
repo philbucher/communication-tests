@@ -1,6 +1,3 @@
-import unittest
-import sys, os, shutil
-
 from base_communication_test import WrapperClass
 import communication_tests
 
