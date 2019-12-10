@@ -71,8 +71,5 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    # - name: searching...
-    #   run: find / -name boost 2> /dev/null
-
     - name: searching...2
-      run: whereis boost
+      run: ls /usr/include
