@@ -23,7 +23,7 @@ jobs:
 
     - name: Building
       run: |
-        cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON -DBUILD_INTERPROCESS_COMM=ON -DBOOST_ROOT="${BOOST_ROOT}
+        cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON -DBUILD_INTERPROCESS_COMM=ON -DBOOST_ROOT="${BOOST_ROOT}"
         cmake --build "build" --target install
       env:
         COMM_TESTS_CXX_STANDARD: ${{ matrix.cxx-standard }}
