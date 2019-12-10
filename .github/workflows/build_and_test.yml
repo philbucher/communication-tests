@@ -21,13 +21,9 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install Boost # TODO use the installed one
-      run: |
-        sudo apt-get install libboost-dev
-
     - name: Building
       run: |
-        cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON -DBUILD_INTERPROCESS_COMM=ON
+        cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON -DBUILD_INTERPROCESS_COMM=ON -DBOOST_ROOT="${BOOST_ROOT}
         cmake --build "build" --target install
       env:
         COMM_TESTS_CXX_STANDARD: ${{ matrix.cxx-standard }}
