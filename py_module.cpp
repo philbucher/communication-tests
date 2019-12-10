@@ -1,15 +1,32 @@
 #include <pybind11/pybind11.h>
 
-#include "file_comm/add_file_comm_to_python.h"
+#include "file_comm/file_comm.h"
+#include "file_comm/add_filesystem_to_python.h"
+
 #ifdef COMM_TESTS_USE_SOCKETS
-#include "sockets_comm/add_sockets_comm_to_python.h"
+#include "sockets_comm/sockets_comm.h"
 #endif
+
 #ifdef COMM_TESTS_USE_INTERPROCESS
-#include "interprocess_comm/add_interprocess_comm_to_python.h"
+#include "interprocess_comm/interprocess_comm.h"
 #endif
+
 #ifdef COMM_TESTS_USE_MPI
-#include "mpi_comm/add_mpi_comm_to_python.h"
+#include "mpi_comm/mpi_comm.h"
 #endif
+
+template<class TCommunication>
+void ExposeCommunication(pybind11::module& m, const std::string& rName)
+{
+    namespace py = pybind11;
+    py::class_<TCommunication>(m, rName.c_str())
+        .def(py::init<const std::string&, const bool>())
+        .def("Connect",    &TCommunication::Connect)
+        .def("Disconnect", &TCommunication::Disconnect)
+        .def("Send",       &TCommunication::Send)
+        .def("Receive",    &TCommunication::Receive)
+        ;
+}
 
 PYBIND11_MODULE(communication_tests, m)
 {
@@ -17,20 +34,22 @@ PYBIND11_MODULE(communication_tests, m)
     bool interprocess_enabled = false;
     bool mpi_enabled = false;
 
-    AddFileCommToPython(m);
+    AddFilesystemToPython(m);
+
+    ExposeCommunication<FileCommunication>(m, "FileCommunication");
 
 #ifdef COMM_TESTS_USE_SOCKETS
-    AddSocketsCommToPython(m);
+    ExposeCommunication<SocketsCommunication>(m, "SocketsCommunication");
     sockets_enabled = true;
 #endif
 
 #ifdef COMM_TESTS_USE_INTERPROCESS
-    AddInterprocessCommToPython(m);
+    ExposeCommunication<InterprocessCommunication>(m, "InterprocessCommunication");
     interprocess_enabled = true;
 #endif
 
 #ifdef COMM_TESTS_USE_MPI
-    AddMPICommToPython(m);
+    ExposeCommunication<MPICommunication>(m, "MPICommunication");
     mpi_enabled = true;
 #endif
 

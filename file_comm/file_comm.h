@@ -2,18 +2,18 @@
 
 #include <string>
 #include <vector>
-#include <boost/interprocess/managed_shared_memory.hpp>
+#include "file_comm_file_system.h"
 
-class InterprocessCommunication
+class FileCommunication
 {
     public:
 
-    InterprocessCommunication(const std::string& rConnectionName, const bool IsConnectionMaster)
+    FileCommunication(const std::string& rConnectionName, const bool IsConnectionMaster)
     {
 
     }
 
-    ~InterprocessCommunication()
+    ~FileCommunication()
     {
 
     }
