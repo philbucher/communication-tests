@@ -55,6 +55,23 @@ class TestFileSystem(unittest.TestCase):
         # preform checks
         self.assertFalse(os.path.isdir(TestFileSystem.dir_name))
 
+    def test_remove_all_multiple_times(self):
+        # prepare test
+        os.mkdir(TestFileSystem.dir_name)
+
+        self.assertTrue(os.path.isdir(TestFileSystem.dir_name))
+
+        # call function to be checked
+        communication_tests.FileSystem.remove_all(TestFileSystem.dir_name)
+        # preform checks
+        self.assertFalse(os.path.isdir(TestFileSystem.dir_name))
+
+        # now check if the function can be called multiple times
+        communication_tests.FileSystem.remove_all(TestFileSystem.dir_name)
+
+        # preform checks
+        self.assertFalse(os.path.isdir(TestFileSystem.dir_name))
+
     def test_remove_full_dir(self):
         # prepare test
         os.mkdir(TestFileSystem.dir_name)
