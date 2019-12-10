@@ -11,7 +11,7 @@ class FileCommunication : public Communication
     FileCommunication(const std::string& rConnectionName, const bool IsConnectionMaster)
         : Communication(rConnectionName, IsConnectionMaster)
     {
-
+        COMM_TESTS_ERROR << "not implemented yet" << std::endl;
     }
 
     ~FileCommunication() override

@@ -11,7 +11,7 @@ class MPICommunication : public Communication
     MPICommunication(const std::string& rConnectionName, const bool IsConnectionMaster)
         : Communication(rConnectionName, IsConnectionMaster)
     {
-
+        COMM_TESTS_ERROR << "not implemented yet" << std::endl;
     }
 
     ~MPICommunication() override

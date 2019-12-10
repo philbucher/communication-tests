@@ -1,5 +1,13 @@
 #pragma once
 
+#include <iostream>
+#include <stdexcept>
+struct err { // helper struct to mimic behavior of KRATOS_ERROR
+err() {std::cout << "Error: ";}
+~err() noexcept(false) { throw std::exception(); } // destructors are noexcept by default
+};
+#define COMM_TESTS_ERROR (err(), std::cout)
+
 // #if __cplusplus >= 201703L && (__has_include(<filesystem>) || __has_include(<experimental/filesystem>))
 //     #define FILESYSTEM_AVAILABLE
 // #endif

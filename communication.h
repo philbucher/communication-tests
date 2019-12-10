@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include "common.h"
 
 class Communication
 {
@@ -29,7 +30,6 @@ public:
     {
 
     }
-
 
 protected:
     std::string GetConnectionName() const {return mConnectionName;}
