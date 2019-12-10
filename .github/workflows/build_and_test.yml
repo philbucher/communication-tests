@@ -71,7 +71,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: searching...2
-      run: |
-        ls /usr/include/x86_64-linux-gnu
-        ls /opt
+    - name: searching...
+      run: ls /usr/include/x86_64-linux-gnu
+
+    - name: searching...
+      run ls /opt
