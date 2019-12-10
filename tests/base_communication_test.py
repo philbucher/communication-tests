@@ -11,3 +11,7 @@ class WrapperClass(object):
 
         def test_connect_disconnect(self):
             comm_1 = self.CreateCommunication("abc", True)
+
+        def test_connect_without_disconnect(self):
+            # this should perform automatic disconnection, NOT crash!
+            comm_1 = self.CreateCommunication("abc", True)

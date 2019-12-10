@@ -60,6 +60,7 @@ PYBIND11_MODULE(communication_tests, m)
     m.def("CompilerInfo", [](){
         std::cout << "Compilation information: " << std::endl;
         std::cout << "    Output of \"__cplusplus\": " << __cplusplus << std::endl;
+
         std::cout << "    Filesystem available: ";
         #ifdef FILESYSTEM_AVAILABLE
         std::cout << "YES";
@@ -67,5 +68,30 @@ PYBIND11_MODULE(communication_tests, m)
         std::cout << "NO";
         #endif
         std::cout << std::endl;
+
+        std::cout << "    SocketsComm enabled: ";
+        #ifdef COMM_TESTS_USE_SOCKETS
+        std::cout << "YES";
+        #else
+        std::cout << "NO";
+        #endif
+        std::cout << std::endl;
+
+        std::cout << "    InterprocessComm enabled: ";
+        #ifdef COMM_TESTS_USE_INTERPROCESS
+        std::cout << "YES";
+        #else
+        std::cout << "NO";
+        #endif
+        std::cout << std::endl;
+
+        std::cout << "    MPIComm enabled: ";
+        #ifdef COMM_TESTS_USE_MPI
+        std::cout << "YES";
+        #else
+        std::cout << "NO";
+        #endif
+        std::cout << std::endl;
+
     });
 }
