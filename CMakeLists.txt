@@ -23,7 +23,6 @@ if(BUILD_SOCKETS_COMM OR BUILD_INTERPROCESS_COMM)
 
     # find_package(Boost)
     include_directories(external_libraries/boost_1_71_0)
-    message("XXXXXXXXXXXXXXXXXx")
 endif()
 
 if(BUILD_SOCKETS_COMM)
