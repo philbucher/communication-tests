@@ -63,16 +63,3 @@ jobs:
       run: |
         cd tests
         python run_all_tests.py
-
-
-  search-boost:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-
-    - name: searching...
-      run: ls /usr/include/x86_64-linux-gnu
-
-    - name: searching...
-      run: ls /opt/runner
