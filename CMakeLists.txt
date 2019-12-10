@@ -21,7 +21,6 @@ if(BUILD_SOCKETS_COMM OR BUILD_INTERPROCESS_COMM)
     add_definitions(-DBOOST_DATE_TIME_NO_LIB)
     add_definitions(-DBOOST_REGEX_NO_LIB)
 
-    # find_package(Boost)
     include_directories(external_libraries/boost_1_71_0)
 endif()
 
