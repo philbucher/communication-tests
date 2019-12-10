@@ -5,14 +5,13 @@ rm -rf build
 rm tests/communication_tests.cpython*
 
 # Set CXX-Standard
-export COMM_TESTS_CXX_STANDARD=17
+export COMM_TESTS_CXX_STANDARD=11
 
 # Build
 cmake -H"." -B"build" \
     -DBUILD_MPI_COMM=ON \
     -DBUILD_SOCKETS_COMM=ON \
-    -DBUILD_INTERPROCESS_COMM=ON \
-    -DBOOST_ROOT="${HOME}/software/boost/boost_1_67_0"
+    -DBUILD_INTERPROCESS_COMM=ON
 
 cmake --build "build" --target install
 

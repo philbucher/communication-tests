@@ -18,8 +18,12 @@ if(BUILD_SOCKETS_COMM OR BUILD_INTERPROCESS_COMM)
     # https://stackoverflow.com/questions/9723793/undefined-reference-to-boostsystemsystem-category-when-compiling
     add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)
 
-    find_package(Boost)
-    include_directories(${BOOST_ROOT})
+    add_definitions(-DBOOST_DATE_TIME_NO_LIB)
+    add_definitions(-DBOOST_REGEX_NO_LIB)
+
+    # find_package(Boost)
+    include_directories(external_libraries/boost_1_71_0)
+    message("XXXXXXXXXXXXXXXXXx")
 endif()
 
 if(BUILD_SOCKETS_COMM)
