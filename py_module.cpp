@@ -1,7 +1,5 @@
 #include <pybind11/pybind11.h>
 
-#include "file_comm/file_comm.h"
-#include "file_comm/add_filesystem_to_python.h"
 
 #ifdef COMM_TESTS_USE_SOCKETS
 #include "sockets_comm/sockets_comm.h"
@@ -14,6 +12,10 @@
 #ifdef COMM_TESTS_USE_MPI
 #include "mpi_comm/mpi_comm.h"
 #endif
+
+// including after boost/asio because of windows.h => https://stackoverflow.com/questions/9750344/boostasio-winsock-and-winsock-2-compatibility-issue
+#include "file_comm/file_comm.h"
+#include "file_comm/add_filesystem_to_python.h"
 
 template<class TCommunication>
 void ExposeCommunication(pybind11::module& m, const std::string& rName)
