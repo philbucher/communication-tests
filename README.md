@@ -18,7 +18,11 @@ If you use this repository, please refer to the official GitHub repository:
 ```
 @misc{communication-tests,
   author = "Philipp Bucher",
-  title = "ANurbs",
+  title = "communication-tests",
   howpublished = "\url{https://github.com/philbucher/communication-tests}",
 }
 ```
+
+## Used Libraries
+- [pybind11](https://github.com/pybind/pybind11) for exposing C++ to python
+- [filesystem](https://github.com/gulrak/filesystem) a c++11 implementation of [c++17 filesystem](https://en.cppreference.com/w/cpp/filesystem)
