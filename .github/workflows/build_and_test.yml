@@ -65,7 +65,7 @@ jobs:
         python run_all_tests.py
 
 
-  search boost:
+  search-boost:
     runs-on: ubuntu-latest
 
     steps:
