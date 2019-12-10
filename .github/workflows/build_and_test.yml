@@ -56,10 +56,10 @@ jobs:
 
     - name: Building
       run: |
-        cmake -H"." -B"build" -DBUILD_MPI_COMM=ON
+        cmake -H"." -B"build" -DBUILD_MPI_COMM=ON -DBUILD_SOCKETS_COMM=ON -DBUILD_INTERPROCESS_COMM=ON
         cmake --build "build" --target install
 
     - name: Run tests
       run: |
         cd tests
-        python run_all_tests.py
+        mpiexec -np 2 python run_all_tests.py
