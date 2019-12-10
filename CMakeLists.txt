@@ -4,7 +4,16 @@ cmake_minimum_required (VERSION 2.8.6)
 # set(PYBIND11_CPP_STANDARD -std=c++17) not used, kept here as a reminder that pybind might override things!
 add_subdirectory(external_libraries/pybind)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+# If compiler is g++: Enable further  warnings and treat all warnings as errors
+if(CMAKE_COMPILER_IS_GNUCXX)
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -pedantic -Wall -Wcast-align -Wsuggest-attribute=format \
+        -Wsuggest-attribute=pure -Wimport -Wsuggest-final-methods -Wsuggest-attribute=const  \
+        -Wsuggest-attribute=noreturn -Wformat-y2k -Wpacked -Wno-restrict -Wmissing-include-dirs \
+        -Wswitch-enum -Wwrite-strings -Wformat-nonliteral -Wformat-security -Wcast-qual -Wsuggest-override \
+        -Wsuggest-final-types -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op \
+        -Wnoexcept -Woverloaded-virtual -Wredundant-decls -Wsign-conversion -Wsign-promo \
+        -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Werror" )
+endif()
 
 if(${MSVC})
     # required such that "__cplusplus" is set to the correct value
@@ -21,7 +30,7 @@ if(BUILD_SOCKETS_COMM OR BUILD_INTERPROCESS_COMM)
     add_definitions(-DBOOST_DATE_TIME_NO_LIB)
     add_definitions(-DBOOST_REGEX_NO_LIB)
 
-    include_directories(external_libraries/boost_1_71_0)
+    include_directories(SYSTEM external_libraries/boost_1_71_0)
 endif()
 
 if(BUILD_SOCKETS_COMM)
