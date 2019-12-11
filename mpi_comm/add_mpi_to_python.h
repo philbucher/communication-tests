@@ -47,6 +47,13 @@ int Rank()
     return rank;
 }
 
+void Barrier()
+{
+#ifdef COMM_TESTS_USE_MPI
+    if (is_mpi_run) { MPI_Barrier(MPI_COMM_WORLD); }
+#endif
+}
+
 
 } // helpers namespace
 
@@ -61,4 +68,5 @@ void AddMPIToPython(pybind11::module& m)
 
     m_mpi.def("Size", &Helpers::Size);
     m_mpi.def("Rank", &Helpers::Rank);
+    m_mpi.def("Barrier", &Helpers::Barrier);
 }
