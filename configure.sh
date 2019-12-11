@@ -2,7 +2,7 @@
 
 # Clean
 rm -rf build
-rm communication_tests_core.cpython*
+rm tests/communication_tests_core.cpython*
 
 # Set CXX-Standard
 export COMM_TESTS_CXX_STANDARD=17
