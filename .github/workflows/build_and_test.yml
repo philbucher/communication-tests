@@ -62,4 +62,4 @@ jobs:
     - name: Run tests
       run: |
         cd tests
-        python run_all_tests.py
+        mpiexec -np 2 python run_all_tests.py
