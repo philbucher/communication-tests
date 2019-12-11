@@ -19,6 +19,11 @@ void InitializeMPI()
     MPI_Init(&argc, &argv);
 
     is_mpi_run = true;
+
+    // temp, move from here
+    int isInterComm;
+    MPI_Comm_test_inter(MPI_COMM_WORLD, &isInterComm);
+    std::cout << "MPI_COMM_WORLD : " << MPI_COMM_WORLD << " | is_inter_comm: " << std::boolalpha << bool(isInterComm) << std::endl;
 #endif
 }
 
