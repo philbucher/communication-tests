@@ -71,4 +71,4 @@ set(COMM_TESTS_CXX_STANDARD_REQUIRED ON)
 message("Using CXX_STANDARD: " ${COMM_TESTS_CXX_STANDARD})
 set_property(TARGET communication_tests_core PROPERTY CXX_STANDARD ${COMM_TESTS_CXX_STANDARD})
 
-install(TARGETS communication_tests_core DESTINATION ${CMAKE_SOURCE_DIR})
+install(TARGETS communication_tests_core DESTINATION ${CMAKE_SOURCE_DIR}/tests)  # installing directly into the tests-dir where it is used, no need to bother with a separate "libs" dir
