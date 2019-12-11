@@ -59,7 +59,6 @@ void Barrier()
 #endif
 }
 
-
 } // helpers namespace
 
 void AddMPIToPython(pybind11::module& m)

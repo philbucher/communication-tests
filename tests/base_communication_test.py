@@ -5,6 +5,11 @@ class WrapperClass(object):
     # see https://stackoverflow.com/a/25695512
     class BaseCommunicationTest(unittest.TestCase):
 
+        # @classmethod
+        # def setUpClass(self):
+        #     if serial_run:
+        #         create BaseCommunicationTestDataSender()
+
         @classmethod
         def CreateCommunication(cls, connection_name, is_connection_master):
             raise NotImplementedError('"CreateCommunication" has to implemented in the derived class!')
@@ -42,3 +47,8 @@ class WrapperClass(object):
 
         def test_send_receive_double_multiple_times_large(self):
             pass
+
+class BaseCommunicationTestDataSender(object):
+    # this class works as the "Sender" of data, the class above is the receiver
+    def Execute(self):
+        pass
