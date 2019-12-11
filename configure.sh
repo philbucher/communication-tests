@@ -5,7 +5,7 @@ rm -rf build
 rm communication_tests_core.cpython*
 
 # Set CXX-Standard
-export COMM_TESTS_CXX_STANDARD=11
+export COMM_TESTS_CXX_STANDARD=17
 
 # required otherwise doesn't find MPI-symbols
 export CC=mpicc
@@ -19,5 +19,8 @@ cmake -H"." -B"build" \
 
 cmake --build "build" --target install
 
-echo "\nRunning tests ...\n"
+echo "\n>>> Running tests ...\n"
 python3 tests/run_all_tests.py
+
+echo "\n>>> Running tests in MPI ...\n"
+mpiexec -np 2 python3 tests/run_all_tests.py
