@@ -22,5 +22,9 @@ cmake --build "build" --target install
 echo "\n>>> Running tests ...\n"
 python3 tests/run_all_tests.py
 
-echo "\n>>> Running tests in MPI ...\n"
+echo "\n>>> Running tests in MPI (one comm)...\n"
 mpiexec -np 2 python3 tests/run_all_tests.py
+
+echo "\n>>> Running tests in MPI (separate comms)...\n"
+mpiexec -np 1 python3 tests/run_all_tests.py &
+mpiexec -np 1 python3 tests/run_all_tests.py
