@@ -2,10 +2,14 @@
 
 # Clean
 rm -rf build
-rm tests/communication_tests.cpython*
+rm communication_tests_core.cpython*
 
 # Set CXX-Standard
 export COMM_TESTS_CXX_STANDARD=11
+
+# required otherwise doesn't find MPI-symbols
+export CC=mpicc
+export CXX=mpic++
 
 # Build
 cmake -H"." -B"build" \

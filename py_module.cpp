@@ -16,6 +16,7 @@
 // including after boost/asio because of windows.h => https://stackoverflow.com/questions/9750344/boostasio-winsock-and-winsock-2-compatibility-issue
 #include "file_comm/file_comm.h"
 #include "file_comm/add_filesystem_to_python.h"
+#include "mpi_comm/add_mpi_to_python.h"
 
 template<class TCommunication>
 void ExposeCommunication(pybind11::module& m, const std::string& rName)
@@ -25,7 +26,7 @@ void ExposeCommunication(pybind11::module& m, const std::string& rName)
         .def(py::init<const std::string&, const bool>());
 }
 
-PYBIND11_MODULE(communication_tests, m)
+PYBIND11_MODULE(communication_tests_core, m)
 {
     bool sockets_enabled = false;
     bool interprocess_enabled = false;
@@ -40,6 +41,7 @@ PYBIND11_MODULE(communication_tests, m)
         ;
 
     AddFilesystemToPython(m);
+    AddMPIToPython(m);
 
     ExposeCommunication<FileCommunication>(m, "FileCommunication");
 

@@ -11,4 +11,4 @@
 *build
 
 # compiled py-module
-tests/communication_tests.cp*
+communication_tests_core.cp*

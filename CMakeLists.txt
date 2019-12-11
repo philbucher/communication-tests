@@ -1,4 +1,4 @@
-project(communication_tests)
+project(communication_tests_core)
 cmake_minimum_required (VERSION 2.8.6)
 
 # set(PYBIND11_CPP_STANDARD -std=c++17) not used, kept here as a reminder that pybind might override things!
@@ -58,7 +58,7 @@ if(BUILD_MPI_COMM)
 
 endif()
 
-pybind11_add_module(communication_tests py_module.cpp ${EXTRA_LIBS_TO_LINK})
+pybind11_add_module(communication_tests_core py_module.cpp ${EXTRA_LIBS_TO_LINK})
 
 # Set c++ standard
 if(DEFINED ENV{COMM_TESTS_CXX_STANDARD})
@@ -69,6 +69,6 @@ endif()
 set(COMM_TESTS_CXX_STANDARD_REQUIRED ON)
 
 message("Using CXX_STANDARD: " ${COMM_TESTS_CXX_STANDARD})
-set_property(TARGET communication_tests PROPERTY CXX_STANDARD ${COMM_TESTS_CXX_STANDARD})
+set_property(TARGET communication_tests_core PROPERTY CXX_STANDARD ${COMM_TESTS_CXX_STANDARD})
 
-install(TARGETS communication_tests DESTINATION ${CMAKE_SOURCE_DIR}/tests)  # installing directly into the tests-dir where it is used, no need to bother with a separate "libs" dir
+install(TARGETS communication_tests_core DESTINATION ${CMAKE_SOURCE_DIR})
