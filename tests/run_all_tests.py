@@ -2,8 +2,11 @@ import unittest
 import os, sys
 
 import communication_tests
-communication_tests.CompilerInfo()
-print()
+if communication_tests.MPI.Rank() == 0:
+    communication_tests.CompilerInfo()
+    print()
+
+communication_tests.MPI.Barrier()
 
 loader = unittest.TestLoader()
 tests = loader.discover(os.path.dirname(__file__)) # automatically discover all tests in this directory
