@@ -3,6 +3,7 @@ import sys, os, shutil
 
 import communication_tests
 
+@unittest.skipIf(communication_tests.MPI.IsMPIRun(), "This test can only be run in serial")
 class TestFileSystem(unittest.TestCase):
     dir_name = "my_dir"
     file_name = "the_file.dat"
