@@ -9,8 +9,8 @@ class WrapperClass(object):
         def CreateCommunication(cls, connection_name, is_connection_master):
             raise NotImplementedError('"CreateCommunication" has to implemented in the derived class!')
 
-        def setUp(self):
-            master_comm = self.CreateCommunication("abc", True)
+        # def setUp(self):
+        #     master_comm = self.CreateCommunication("abc", True)
 
         def test_connect_disconnect(self):
             pass
