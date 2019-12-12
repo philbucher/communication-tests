@@ -3,12 +3,15 @@ from base_communication_test import WrapperClass
 import communication_tests
 
 @unittest.skipUnless(communication_tests.Interprocess_enabled, "Interprocess is not enabled!")
+@unittest.skip("Not yet implemented")
 class TestInterprocessCommunication(WrapperClass.BaseCommunicationTest):
-    @classmethod
-    def CreateCommunication(cls, connection_name, is_connection_master):
-        cls.skipTest("not implemented yet", "not implemented yet")
-        return communication_tests.InterprocessCommunication(connection_name, is_connection_master)
-
+    comm_name = "InterprocessCommunication"
 
 if __name__ == '__main__':
-    unittest.main()
+    is_slave_process = (("--tests-slave" in sys.argv[1:]) or (communication_tests.MPI.Rank() == 1))
+
+    if is_slave_process:
+        from base_communication_test import BaseCommunicationTestDataSender
+        BaseCommunicationTestDataSender().Execute()
+    else:
+        unittest.main()

@@ -1,27 +1,36 @@
 import unittest
+import communication_tests
+import os
+from time import sleep
+import threading
+
+file_name_to_slave = "signal_to_slave.dat"
+file_name_from_slave = "signal_from_slave.dat"
 
 class WrapperClass(object):
     # wrapping in an extra class to avoid discovery of the base-test
     # see https://stackoverflow.com/a/25695512
     class BaseCommunicationTest(unittest.TestCase):
 
-        # @classmethod
-        # def setUpClass(self):
-        #     if serial_run:
-        #         create BaseCommunicationTestDataSender()
-
         @classmethod
-        def CreateCommunication(cls, connection_name, is_connection_master):
-            raise NotImplementedError('"CreateCommunication" has to implemented in the derived class!')
+        def setUpClass(cls):
+            # making sure there are no leftovers
+            RemoveLeftoverFiles()
 
-        # def setUp(self):
-        #     master_comm = self.CreateCommunication("abc", True)
+            if not communication_tests.MPI.IsMPIRun():
+                # this is only required in serial
+                # in MPI this is started by a different (MPI-)process
+                cls.sender = BaseCommunicationTestDataSender()
+                cls.sender.ExecuteInThread()
+
+        def setUp(self):
+            self.connection_name = "CommunicationTest_{}_{}".format(self.comm_name, self._testMethodName)
+            self.master_comm = getattr(communication_tests, self.comm_name)(self.connection_name, True) # true means master
+            self.__CommunicateSignalToSlaveProcess(self.connection_name, self.comm_name, "connect")
+            self.master_comm.Connect()
 
         def test_connect_disconnect(self):
-            pass
-
-        def test_connect_without_disconnect(self):
-            # this should perform automatic disconnection, NOT crash!
+            # things are done in setup & tear-down
             pass
 
         def test_send_receive_int_once_small(self):
@@ -48,7 +57,105 @@ class WrapperClass(object):
         def test_send_receive_double_multiple_times_large(self):
             pass
 
+        @classmethod
+        def __CommunicateSignalToSlaveProcess(self, connection_name, comm_name, signal):
+            WaitForFileToBeRemoved(file_name_to_slave)
+
+            with open(file_name_to_slave, 'w') as signal_file:
+                signal_file.write(connection_name)
+                signal_file.write("\n")
+                signal_file.write(comm_name)
+                signal_file.write("\n")
+                signal_file.write(signal)
+
+        def tearDown(self):
+            self.__CommunicateSignalToSlaveProcess(self.connection_name, self.comm_name, "disconnect")
+            self.master_comm.Disconnect()
+
+        @classmethod
+        def tearDownClass(cls):
+            cls.__CommunicateSignalToSlaveProcess("dummy", "dummy", "exit")
+            if not communication_tests.MPI.IsMPIRun():
+                cls.sender.JoinThread()
+
+
 class BaseCommunicationTestDataSender(object):
     # this class works as the "Sender" of data, the class above is the receiver
+    def __init__(self):
+        self.my_thread = None
+
     def Execute(self):
-        pass
+        sleep(1) # giving the other process time to clean leftover files
+        self.slave_comm = None
+        self.current_connection_name = ""
+        self.current_comm_name = ""
+
+        while True:
+            read_signal_info = ReceiveSignalFromMasterProcess()
+            connection_name = read_signal_info[0]
+            comm_name = read_signal_info[1]
+            signal = read_signal_info[2]
+
+            if signal == "connect":
+                if self.slave_comm is not None:
+                    raise Exception("connection exists already")
+
+                self.slave_comm = getattr(communication_tests, comm_name)(connection_name, False) # False means slave
+                self.slave_comm.Connect()
+                self.current_comm_name = comm_name
+                self.current_connection_name = connection_name
+
+            elif signal == "disconnect":
+                self.__CheckConnection(connection_name, comm_name)
+                self.slave_comm.Disconnect()
+                self.slave_comm = None
+
+            elif signal == "exit":
+                self.slave_comm = None
+                break
+
+            else:
+                raise Exception('Signal "{}" not recognized!')
+
+    def ExecuteInThread(self):
+        self.my_thread = threading.Thread(target=self.Execute)
+        self.my_thread.start()
+
+    def JoinThread(self):
+        self.my_thread.join()
+
+    def __CheckConnection(self, connection_name, comm_name):
+        if self.slave_comm is None:
+            raise Exception("no connection exists")
+        if connection_name != self.current_connection_name:
+            raise Exception("Mismatch in connection name")
+        if comm_name != self.current_comm_name:
+            raise Exception("Mismatch in comm name")
+
+
+def WaitForFile(file_name):
+    while(not os.path.isfile(file_name)):
+        sleep(0.01)
+
+def WaitForFileToBeRemoved(file_name):
+    while(os.path.isfile(file_name)):
+        sleep(0.01)
+
+def RemoveLeftoverFiles():
+    def TryToRemoveFile(file_name):
+        try:
+            os.remove(file_name)
+        except:
+            pass
+    TryToRemoveFile(file_name_to_slave)
+    TryToRemoveFile(file_name_from_slave)
+
+def ReceiveSignalFromMasterProcess():
+    WaitForFile(file_name_to_slave)
+
+    with open(file_name_to_slave, 'r') as signal_file:
+        read_signal_info = signal_file.read().splitlines()
+
+    os.remove(file_name_to_slave)
+
+    return read_signal_info
