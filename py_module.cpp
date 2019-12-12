@@ -22,7 +22,7 @@ template<class TCommunication>
 void ExposeCommunication(pybind11::module& m, const std::string& rName)
 {
     namespace py = pybind11;
-    py::class_<TCommunication>(m, rName.c_str())
+    py::class_<TCommunication, Communication>(m, rName.c_str())
         .def(py::init<const std::string&, const bool>());
 }
 
