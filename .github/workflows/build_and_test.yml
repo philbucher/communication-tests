@@ -17,6 +17,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macOS-latest]
         python-version: [3.7]
         cxx-standard: [11, 17]
+    timeout-minutes: 5
 
     steps:
     - uses: actions/checkout@v1
@@ -45,6 +46,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         python-version: [3.7]
+    timeout-minutes: 10
 
     steps:
     - uses: actions/checkout@v1
