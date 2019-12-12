@@ -165,7 +165,7 @@ class BaseCommunicationTestDataSender(object):
 def WaitForFile(file_name):
     while(not os.path.isfile(file_name)):
         sleep(0.001)
-    sleep(0.001) # additional wait to make sure the file operation completed
+    sleep(0.01) # additional wait to make sure the file operation completed
 
 def WaitForFileToBeRemoved(file_name):
     while(os.path.isfile(file_name)):
