@@ -25,8 +25,9 @@ public:
 
     void Send(const std::size_t SendSize, const std::size_t SendDataId)
     {
-        std::vector<double> abc(SendSize, 1.447);
-        SendDetail(abc);
+        // std::vector<double> abc(SendSize, 1.447); // save this otherwise allocation takes too long
+        // or do the loop in here
+        // SendDetail(abc);
     }
 
     void Receive(const std::size_t SendSize, const std::size_t SendDataId)

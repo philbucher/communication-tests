@@ -14,10 +14,10 @@ signal_map = {
     "data_1" : 25,
     "data_2" : 25,
     "data_3" : 25,
-    "data_4" : 1E10,
-    "data_5" : 1E10,
-    "data_6" : 1E10,
-    "data_7" : 1E10,
+    "data_4" : 1E7,
+    "data_5" : 1E7,
+    "data_6" : 1E7,
+    "data_7" : 1E7,
 }
 
 class WrapperClass(object):
