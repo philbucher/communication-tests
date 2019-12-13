@@ -7,7 +7,7 @@ rm tests/communication_tests_core.cpython*
 set -e # set fail on error
 
 # Set CXX-Standard
-export COMM_TESTS_CXX_STANDARD=17
+export COMM_TESTS_CXX_STANDARD=11
 
 # required otherwise doesn't find MPI-symbols
 export CC=mpicc
