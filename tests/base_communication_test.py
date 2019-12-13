@@ -82,8 +82,8 @@ class WrapperClass(object):
 
         @classmethod
         def __CommunicateSignalToSlaveProcess(cls, connection_name, comm_name, signal):
-            if not communication_tests.MPI.IsMPIRun():
-                print("isAlive:", cls.sender.my_thread.isAlive())
+            # if not communication_tests.MPI.IsMPIRun():
+            #     print("isAlive:", cls.sender.my_thread.isAlive())
             WaitForFileToBeRemoved(file_name_to_slave)
 
             with open("."+file_name_to_slave, 'w') as signal_file:
