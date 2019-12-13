@@ -4,6 +4,8 @@
 rm -rf build
 rm tests/communication_tests_core.cpython*
 
+set -e # set fail on error
+
 # Set CXX-Standard
 export COMM_TESTS_CXX_STANDARD=17
 
