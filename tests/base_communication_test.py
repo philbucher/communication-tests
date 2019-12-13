@@ -167,7 +167,7 @@ class BaseCommunicationTestDataSender(object):
 def WaitForFile(file_name):
     while(not os.path.isfile(file_name) or not os.access(file_name, os.R_OK)):
         sleep(0.0001)
-    print("os.access(file_name, os.R_OK)", os.access(file_name, os.R_OK))
+    # print("os.access(file_name, os.R_OK)", os.access(file_name, os.R_OK))
 
 def WaitForFileToBeRemoved(file_name):
     while(os.path.isfile(file_name)):
