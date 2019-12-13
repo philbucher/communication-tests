@@ -83,7 +83,7 @@ class WrapperClass(object):
         @classmethod
         def __CommunicateSignalToSlaveProcess(cls, connection_name, comm_name, signal):
             if not communication_tests.MPI.IsMPIRun():
-                print(cls.sender.my_thread.isAlive())
+                print("isAlive:", cls.sender.my_thread.isAlive())
             WaitForFileToBeRemoved(file_name_to_slave)
 
             with open("."+file_name_to_slave, 'w') as signal_file:
@@ -167,6 +167,7 @@ class BaseCommunicationTestDataSender(object):
 def WaitForFile(file_name):
     while(not os.path.isfile(file_name) or not os.access(file_name, os.R_OK)):
         sleep(0.0001)
+    print("os.access(file_name, os.R_OK)", os.access(file_name, os.R_OK))
 
 def WaitForFileToBeRemoved(file_name):
     while(os.path.isfile(file_name)):
