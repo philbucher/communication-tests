@@ -1,4 +1,4 @@
-name: Building and Testing
+name: Building and Testing On Win
 
 on:
   schedule:
