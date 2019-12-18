@@ -1,37 +1,30 @@
-name: Building and Testing On Win
-
-on:
-  schedule:
-    - cron:  '*/10 * * * *'
+on: push
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      max-parallel: 4
-      fail-fast: false
-      matrix:
-        os: [windows-latest]
-        python-version: [3.7]
-        cxx-standard: [11]
-    timeout-minutes: 5
-
+  one:
+    runs-on: ubuntu-16.04
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-
-    - name: Building
-      run: |
-        cmake -H"." -B"build" -DBUILD_SOCKETS_COMM=ON -DBUILD_INTERPROCESS_COMM=ON
-        cmake --build "build" --target install
-      env:
-        COMM_TESTS_CXX_STANDARD: ${{ matrix.cxx-standard }}
-
-    - name: Run tests
-      run: |
-        cd tests
-        python run_all_tests.py
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: Dump job context
+        env:
+          JOB_CONTEXT: ${{ toJson(job) }}
+        run: echo "$JOB_CONTEXT"
+      - name: Dump steps context
+        env:
+          STEPS_CONTEXT: ${{ toJson(steps) }}
+        run: echo "$STEPS_CONTEXT"
+      - name: Dump runner context
+        env:
+          RUNNER_CONTEXT: ${{ toJson(runner) }}
+        run: echo "$RUNNER_CONTEXT"
+      - name: Dump strategy context
+        env:
+          STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+        run: echo "$STRATEGY_CONTEXT"
+      - name: Dump matrix context
+        env:
+          MATRIX_CONTEXT: ${{ toJson(matrix) }}
+        run: echo "$MATRIX_CONTEXT"
