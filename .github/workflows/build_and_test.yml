@@ -39,43 +39,43 @@ jobs:
         cd tests
         python run_all_tests.py
 
-  build_with_MPI:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      max-parallel: 4
-      matrix:
-        os: [ubuntu-latest]
-        python-version: [3.7]
-    timeout-minutes: 10
+  # build_with_MPI:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     max-parallel: 4
+  #     matrix:
+  #       os: [ubuntu-latest]
+  #       python-version: [3.7]
+  #   timeout-minutes: 10
 
-    steps:
-    - uses: actions/checkout@v1
+  #   steps:
+  #   - uses: actions/checkout@v1
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
+  #   - name: Set up Python ${{ matrix.python-version }}
+  #     uses: actions/setup-python@v1
+  #     with:
+  #       python-version: ${{ matrix.python-version }}
 
-    - name: Install MPI
-      run: |
-        sudo apt-get install libopenmpi-dev
-        sudo apt-get install openmpi-bin
+  #   - name: Install MPI
+  #     run: |
+  #       sudo apt-get install libopenmpi-dev
+  #       sudo apt-get install openmpi-bin
 
-    - name: Building
-      run: |
-        cmake -H"." -B"build" -DBUILD_MPI_COMM=ON -DBUILD_SOCKETS_COMM=ON -DBUILD_INTERPROCESS_COMM=ON
-        cmake --build "build" --target install
-      env:
-        CC : mpicc
-        CXX : mpic++
+  #   - name: Building
+  #     run: |
+  #       cmake -H"." -B"build" -DBUILD_MPI_COMM=ON -DBUILD_SOCKETS_COMM=ON -DBUILD_INTERPROCESS_COMM=ON
+  #       cmake --build "build" --target install
+  #     env:
+  #       CC : mpicc
+  #       CXX : mpic++
 
-    - name: Run tests (one common MPI-Communicator)
-      run: |
-        cd tests
-        mpiexec -np 2 python run_all_tests.py --using-mpi
+  #   - name: Run tests (one common MPI-Communicator)
+  #     run: |
+  #       cd tests
+  #       mpiexec -np 2 python run_all_tests.py --using-mpi
 
-    - name: Run tests (two separate MPI-Communicators)
-      run: |
-        cd tests
-        mpiexec -np 1 python3 run_all_tests.py --using-mpi &
-        mpiexec -np 1 python3 run_all_tests.py --using-mpi --tests-slave
+  #   - name: Run tests (two separate MPI-Communicators)
+  #     run: |
+  #       cd tests
+  #       mpiexec -np 1 python3 run_all_tests.py --using-mpi &
+  #       mpiexec -np 1 python3 run_all_tests.py --using-mpi --tests-slave
